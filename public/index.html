@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://jp-a11y-component-lab.pages.dev/">
+    <meta property="og:url" content="https://jp-a11y-component-lab.pages.dev/">
+    <link rel="license" href="./LICENSE.txt">
+    <meta
+      name="description"
+      content="日本語の開閉と入力エラーUIを試し、検証手順と自己完結HTML bundleを取得できる単一tested demo。"
+    >
+    <meta property="og:title" content="日本語Disclosure/Error UI | Tested Component Demo">
+    <meta
+      property="og:description"
+      content="開閉、入力エラー、フォーカス移動を試し、検証可能なコードbundleを取得できます。"
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary">
+    <title>日本語Disclosure/Error UI | Tested Component Demo</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#component-heading">コンポーネントへ移動</a>
+
+    <main class="page-shell">
+      <header class="intro">
+        <p class="eyebrow">TESTED COMPONENT DEMO 01</p>
+        <h1 id="component-heading">開閉とエラーを、状態で確認する</h1>
+        <p class="lead">
+          詳細を開き、入力エラーとフォーカス移動を試してから、
+          同じ状態契約で検証できるコードを取得できます。
+        </p>
+      </header>
+
+      <section
+        id="disclosure-error-pattern"
+        class="pattern-card"
+        aria-labelledby="pattern-title"
+        data-state="collapsed-pristine"
+      >
+        <div class="pattern-card__heading">
+          <div>
+            <p class="step-label">STEP 1</p>
+            <h2 id="pattern-title">利用前の確認</h2>
+          </div>
+          <span class="state-badge" aria-hidden="true">未確認</span>
+        </div>
+
+        <div id="validation-error" class="error-message" role="alert" hidden>
+          <p><strong>確認を完了できませんでした。</strong></p>
+          <p class="error-message__detail">詳細を開いて「内容を確認しました」を選んでください。</p>
+          <button class="error-jump" type="button">確認項目へ移動</button>
+        </div>
+
+        <button
+          id="disclosure-toggle"
+          class="disclosure-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="disclosure-panel"
+        >
+          <span>詳細と確認項目</span>
+          <span class="toggle-icon" aria-hidden="true"></span>
+        </button>
+
+        <div id="disclosure-panel" class="disclosure-panel" hidden>
+          <p>
+            このサンプルは開閉、入力エラー、フォーカス移動をまとめて検証するためのものです。
+            自動検査の結果だけで WCAG 適合を保証するものではありません。
+          </p>
+
+          <div class="check-row">
+            <input
+              id="confirmation"
+              name="confirmation"
+              type="checkbox"
+              aria-describedby="confirmation-hint"
+              aria-errormessage="validation-error"
+            >
+            <div>
+              <label for="confirmation">内容を確認しました</label>
+              <p id="confirmation-hint">選択はこのページ内だけで使われ、送信されません。</p>
+            </div>
+          </div>
+        </div>
+
+        <button id="complete-button" class="primary-button" type="button">
+          取得前チェックを完了
+        </button>
+
+        <p id="completion-status" class="completion-status" role="status" hidden>
+          操作確認が完了しました。次にコードbundleを取得できます。
+        </p>
+      </section>
+
+      <section id="acquisition-card" class="acquisition-card" aria-labelledby="acquisition-heading" hidden>
+        <p class="step-label">STEP 2</p>
+        <h2 id="acquisition-heading">コードを取得</h2>
+        <p class="acquisition-card__description">
+          HTML・CSS・JavaScriptを1ファイルにまとめた、自己完結型のコードbundleです。
+          取得後は同梱の状態再現APIとrepositoryのrunbookで再検証できます。
+        </p>
+        <a
+          id="bundle-download"
+          class="download-button"
+          href="./artifacts/jp-disclosure-error-component.html"
+          download="jp-disclosure-error-component.html"
+        >
+          HTML bundleを取得
+        </a>
+        <p class="hash-note">
+          整合性確認:
+          <a href="./artifacts/SHA256SUMS" download="SHA256SUMS">SHA-256 manifest</a>
+        </p>
+        <p id="acquisition-status" class="acquisition-status" role="status" hidden>
+          取得を開始しました。必要な場合だけ、通常の公式ページへ進めます。
+        </p>
+      </section>
+
+      <aside id="official-card" class="official-card" aria-labelledby="official-heading" hidden>
+        <p class="step-label">OPTIONAL</p>
+        <h2 id="official-heading">サイト制作を続ける</h2>
+        <p class="official-card__description">
+          自分のサイト制作を続ける必要がある場合のみ利用する、通常のWebflow公式リンクです。
+          componentの取得や利用には必要ありません。
+        </p>
+        <a
+          id="official-product-link"
+          class="text-link"
+          href="https://webflow.com/platform"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          公式サイトを開く<span aria-hidden="true"> ↗</span>
+        </a>
+
+      </aside>
+
+      <footer class="page-note">
+        <p class="page-note__text">
+          自動検査は限定環境の証拠であり、WCAG適合保証ではありません。
+          Webflow上の動作とcopy/cloneは未検証です。
+        </p>
+      </footer>
+    </main>
+
+    <noscript>このパターンの開閉とエラー確認には JavaScript が必要です。</noscript>
+  </body>
+</html>
