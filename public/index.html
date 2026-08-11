@@ -26,12 +26,27 @@
     <a class="skip-link" href="#component-heading">コンポーネントへ移動</a>
 
     <main class="page-shell">
-      <header class="intro">
-        <p class="eyebrow">TESTED COMPONENT DEMO 01</p>
-        <h1 id="component-heading">開閉とエラーを、状態で確認する</h1>
+      <header class="intro intro--landing">
+        <div class="intro__topline">
+          <p class="eyebrow">TESTED COMPONENT DEMO 01</p>
+          <p class="version-note">1ファイル・外部依存なし</p>
+        </div>
+        <h1 id="component-heading">日本語の開閉・エラーUIを、試して持ち帰る</h1>
         <p class="lead">
-          詳細を開き、入力エラーとフォーカス移動を試してから、
-          同じ状態契約で検証できるコードを取得できます。
+          エラー表示とフォーカス移動をその場で試し、
+          7状態を再検証できる自己完結HTMLを取得できます。
+        </p>
+        <ul class="proof-strip">
+          <li class="proof-item"><strong>7状態</strong><span>axeで自動検査</span></li>
+          <li class="proof-item"><strong>6キー</strong><span>フォーカス経路を確認</span></li>
+          <li class="proof-item"><strong>2画面幅</strong><span>視覚差分を固定</span></li>
+        </ul>
+        <div class="intro__actions">
+          <a class="hero-link hero-link--primary" href="#disclosure-error-pattern">デモを試す</a>
+          <a class="hero-link hero-link--secondary" href="#evidence-summary">検証範囲と制限</a>
+        </div>
+        <p class="scope-note">
+          自動検査は限定環境の証拠です。WCAG適合や実装先での動作を保証しません。
         </p>
       </header>
 
@@ -43,15 +58,16 @@
       >
         <div class="pattern-card__heading">
           <div>
-            <p class="step-label">STEP 1</p>
-            <h2 id="pattern-title">利用前の確認</h2>
+            <p class="step-label">STEP 1 / 3 · TRY</p>
+            <h2 id="pattern-title">エラーとフォーカス移動を試す</h2>
+            <p class="pattern-card__summary">開閉して条件を確認し、未選択のまま進む動きも試せます。</p>
           </div>
           <span class="state-badge" aria-hidden="true">未確認</span>
         </div>
 
         <div id="validation-error" class="error-message" role="alert" hidden>
           <p><strong>確認を完了できませんでした。</strong></p>
-          <p class="error-message__detail">詳細を開いて「内容を確認しました」を選んでください。</p>
+          <p class="error-message__detail">詳細を開いて「操作条件を確認しました」を選んでください。</p>
           <button class="error-jump" type="button">確認項目へ移動</button>
         </div>
 
@@ -62,14 +78,14 @@
           aria-expanded="false"
           aria-controls="disclosure-panel"
         >
-          <span>詳細と確認項目</span>
+          <span>確認内容を開く</span>
           <span class="toggle-icon" aria-hidden="true"></span>
         </button>
 
         <div id="disclosure-panel" class="disclosure-panel" hidden>
           <p>
-            このサンプルは開閉、入力エラー、フォーカス移動をまとめて検証するためのものです。
-            自動検査の結果だけで WCAG 適合を保証するものではありません。
+            未選択のまま進むと、エラーを表示してこの確認項目へフォーカスを移します。
+            Escapeではパネルを閉じ、開閉ボタンへ戻ります。
           </p>
 
           <div class="check-row">
@@ -81,51 +97,73 @@
               aria-errormessage="validation-error"
             >
             <div>
-              <label for="confirmation">内容を確認しました</label>
+              <label for="confirmation">操作条件を確認しました</label>
               <p id="confirmation-hint">選択はこのページ内だけで使われ、送信されません。</p>
             </div>
           </div>
         </div>
 
         <button id="complete-button" class="primary-button" type="button">
-          取得前チェックを完了
+          この操作を試して次へ
         </button>
 
         <p id="completion-status" class="completion-status" role="status" hidden>
-          操作確認が完了しました。次にコードbundleを取得できます。
+          デモ操作を確認しました。次に自己完結HTMLを取得できます。
         </p>
       </section>
 
       <section id="acquisition-card" class="acquisition-card" aria-labelledby="acquisition-heading" hidden>
-        <p class="step-label">STEP 2</p>
-        <h2 id="acquisition-heading">コードを取得</h2>
+        <p class="step-label">STEP 2 / 3 · GET THE CODE</p>
+        <h2 id="acquisition-heading">1ファイルのHTMLを取得</h2>
         <p class="acquisition-card__description">
-          HTML・CSS・JavaScriptを1ファイルにまとめた、自己完結型のコードbundleです。
-          取得後は同梱の状態再現APIとrepositoryのrunbookで再検証できます。
+          HTML・CSS・JavaScriptをまとめた自己完結型です。
+          保存後に同梱の状態再現APIとrepositoryのrunbookで再検証できます。
         </p>
+        <ul class="bundle-facts">
+          <li class="bundle-fact">外部通信なし</li>
+          <li class="bundle-fact">7状態を再現</li>
+          <li class="bundle-fact">SHA-256付き</li>
+        </ul>
         <a
           id="bundle-download"
           class="download-button"
           href="./artifacts/jp-disclosure-error-component.html"
           download="jp-disclosure-error-component.html"
         >
-          HTML bundleを取得
+          自己完結HTMLを取得
         </a>
+        <p id="acquisition-status" class="acquisition-status" role="status" hidden>
+          ダウンロードを開始しました。保存したHTMLを開き、同じ操作を確認してください。
+        </p>
+        <div id="use-confirmation" class="use-confirmation" hidden>
+          <p id="use-confirmation-help">
+            保存したHTMLを開いて操作確認まで終えた場合だけ、次のボタンを押してください。
+            導入・公開の完了は計測しません。記録するのは固定イベント名だけです。
+          </p>
+          <button
+            id="confirm-use-button"
+            class="confirmation-button"
+            type="button"
+            aria-describedby="use-confirmation-help"
+          >
+            保存したHTMLを開いて確認できた
+          </button>
+          <p id="use-confirmation-status" class="use-confirmation__status" role="status" hidden>
+            自己申告による取得後確認を記録しました。必要な場合だけ、通常の公式ページへ進めます。
+          </p>
+        </div>
         <p class="hash-note">
           整合性確認:
           <a href="./artifacts/SHA256SUMS" download="SHA256SUMS">SHA-256 manifest</a>
         </p>
-        <p id="acquisition-status" class="acquisition-status" role="status" hidden>
-          取得を開始しました。必要な場合だけ、通常の公式ページへ進めます。
-        </p>
       </section>
 
       <aside id="official-card" class="official-card" aria-labelledby="official-heading" hidden>
-        <p class="step-label">OPTIONAL</p>
-        <h2 id="official-heading">サイト制作を続ける</h2>
+        <p class="step-label">STEP 3 / 3 · OPTIONAL</p>
+        <h2 id="official-heading">必要なら、サイト制作へ</h2>
         <p class="official-card__description">
-          自分のサイト制作を続ける必要がある場合のみ利用する、通常のWebflow公式リンクです。
-          componentの取得や利用には必要ありません。
+          取得後の確認を終え、サイト制作を続ける必要がある場合だけ利用する、
+          通常のWebflow公式リンクです。このHTMLの利用には必要ありません。
         </p>
         <a
           id="official-product-link"
@@ -138,6 +176,35 @@
         </a>
 
       </aside>
+
+      <section id="evidence-summary" class="evidence-card" aria-labelledby="evidence-heading">
+        <p class="step-label">EVIDENCE / LIMITS</p>
+        <h2 id="evidence-heading">検証済みと未検証を分けて表示</h2>
+        <div class="evidence-grid">
+          <div>
+            <h3>固定環境で実行済み</h3>
+            <ul>
+              <li>7状態のaxe自動検査</li>
+              <li>Tab・Shift+Tab・Enter・Space・Escapeとフォーカス経路</li>
+              <li>reduced motion、200%文字拡大、320 CSS pxリフロー</li>
+              <li>Chromiumのデスクトップ／モバイル視覚差分</li>
+            </ul>
+          </div>
+          <div>
+            <h3>人による確認が必要</h3>
+            <ul>
+              <li>スクリーンリーダーと実機</li>
+              <li>Safari・Firefox・forced colors</li>
+              <li>Webflowへのcopy/cloneと出力後の再検証</li>
+              <li>実サイトへの導入・公開</li>
+            </ul>
+          </div>
+        </div>
+        <p class="evidence-card__note">
+          自動テストだけでWCAG適合を断定しません。取得後確認は自己申告です。
+          このサイトはローカルHTMLの起動、実装成功、公開完了を技術的に検証しません。
+        </p>
+      </section>
 
       <footer class="page-note">
         <p class="page-note__text">

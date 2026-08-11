@@ -60,16 +60,27 @@ input.is-programmatic-focus {
   z-index: 10;
   top: 0.75rem;
   left: 0.75rem;
-  padding: 0.65rem 0.9rem;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
   color: var(--paper);
   background: var(--ink);
+  border: 0;
   border-radius: 0.35rem;
-  transform: translateY(-160%);
-  transition: transform 160ms ease-out;
+  clip-path: inset(50%);
+  transform: translateY(calc(-100% - 1rem));
+  white-space: nowrap;
 }
 
 .skip-link:focus {
-  transform: translateY(0);
+  width: auto;
+  height: auto;
+  padding: 0.65rem 0.9rem;
+  overflow: visible;
+  clip-path: none;
+  transform: none;
+  white-space: normal;
 }
 
 .page-shell {
@@ -133,6 +144,13 @@ h2 {
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 1.25rem;
+}
+
+.pattern-card__summary {
+  max-width: 34rem;
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .state-badge {
@@ -241,8 +259,8 @@ h2 {
 }
 
 .check-row input {
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 1.5rem;
+  height: 1.5rem;
   margin: 0.12rem 0 0;
   accent-color: var(--accent);
 }
@@ -352,8 +370,118 @@ noscript {
 
 /* component-bundle:end */
 
+.intro--landing {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.5rem, 5vw, 2.75rem);
+  color: #f8faff;
+  background:
+    radial-gradient(circle at 94% 8%, rgb(123 155 255 / 40%), transparent 16rem),
+    linear-gradient(135deg, #121f43 0%, #2549ad 100%);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.intro--landing .eyebrow {
+  color: #c8d5ff;
+}
+
+.intro--landing .lead {
+  color: #e0e7fb;
+}
+
+.intro__topline {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.version-note {
+  margin: 0;
+  color: #e0e7fb;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.proof-strip {
+  display: grid;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 0.75rem;
+}
+
+.proof-item {
+  min-width: 0;
+  padding: 0.85rem 1rem;
+}
+
+.proof-item + .proof-item {
+  border-left: 1px solid rgb(255 255 255 / 22%);
+}
+
+.proof-item strong,
+.proof-item span {
+  display: block;
+}
+
+.proof-item strong {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.proof-item span {
+  color: #dfe7ff;
+  font-size: 0.78rem;
+}
+
+.intro__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hero-link {
+  display: inline-flex;
+  min-height: 3rem;
+  padding: 0.65rem 1rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  border-radius: 0.55rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.hero-link--primary {
+  color: #17213c;
+  background: #fff;
+}
+
+.hero-link--secondary {
+  color: #fff;
+  background: transparent;
+}
+
+.hero-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.scope-note {
+  margin: 0.9rem 0 0;
+  color: #dfe7ff;
+  font-size: 0.78rem;
+}
+
 .acquisition-card,
-.official-card {
+.official-card,
+.evidence-card {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -376,6 +504,25 @@ noscript {
 .acquisition-card__description {
   margin: 0.75rem 0 1rem;
   color: var(--muted);
+}
+
+.bundle-facts {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.bundle-fact {
+  padding: 0.28rem 0.65rem;
+  color: #10543c;
+  background: var(--success-soft);
+  border: 1px solid #b5dcca;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .download-button {
@@ -417,23 +564,137 @@ noscript {
   font-weight: 700;
 }
 
+.use-confirmation {
+  margin-top: 0.9rem;
+  padding: 1rem;
+  background: #f8f9fc;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+}
+
+.use-confirmation > p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.confirmation-button {
+  min-height: 3.25rem;
+  margin-top: 0.75rem;
+  padding: 0.7rem 1rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 0.125rem solid var(--accent);
+  border-radius: 0.55rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.confirmation-button:disabled {
+  color: #10543c;
+  background: var(--success-soft);
+  border-color: #8bc8ae;
+  cursor: default;
+}
+
+.confirmation-button:hover:not(:disabled) {
+  color: var(--paper);
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.use-confirmation .use-confirmation__status {
+  margin-top: 0.75rem;
+  color: #10543c;
+  font-weight: 700;
+}
+
 .official-card__description {
   margin: 0.75rem 0;
   color: var(--muted);
 }
 
 .text-link {
+  display: inline-flex;
+  min-height: 1.5rem;
+  align-items: center;
   color: var(--accent-dark);
   font-weight: 750;
   text-decoration-thickness: 0.1em;
   text-underline-offset: 0.2em;
 }
 
+.evidence-card {
+  margin-top: 1.5rem;
+  padding: clamp(1.1rem, 4vw, 1.6rem);
+  box-shadow: none;
+}
+
+.evidence-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.evidence-grid > div {
+  padding: 1rem;
+  background: #f8f9fc;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+}
+
+.evidence-grid h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.evidence-grid ul {
+  margin: 0.65rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.evidence-card__note {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
 
 
 @media (width <= 34rem) {
   .acquisition-card,
-  .official-card {
+  .official-card,
+  .evidence-card {
     padding-inline: 16px;
+  }
+
+  .intro--landing {
+    padding-inline: 16px;
+  }
+
+  .intro__topline {
+    display: block;
+  }
+
+  .version-note {
+    margin-top: 0.4rem;
+  }
+
+  .proof-strip,
+  .evidence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-item + .proof-item {
+    border-top: 1px solid rgb(255 255 255 / 22%);
+    border-left: 0;
+  }
+
+  .intro__actions,
+  .hero-link,
+  .confirmation-button {
+    width: 100%;
   }
 }

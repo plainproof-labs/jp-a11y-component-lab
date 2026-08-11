@@ -16,12 +16,25 @@ function connectAcquisition(measurement) {
   const acquisitionCard = document.querySelector("#acquisition-card");
   const bundleDownload = document.querySelector("#bundle-download");
   const acquisitionStatus = document.querySelector("#acquisition-status");
+  const useConfirmation = document.querySelector("#use-confirmation");
+  const confirmUseButton = document.querySelector("#confirm-use-button");
+  const useConfirmationStatus = document.querySelector("#use-confirmation-status");
   const officialCard = document.querySelector("#official-card");
+  let downloadStarted = false;
 
   bundleDownload.addEventListener("click", () => {
+    downloadStarted = true;
+    acquisitionStatus.hidden = false;
+    useConfirmation.hidden = false;
+  });
+
+  confirmUseButton.addEventListener("click", () => {
+    if (!downloadStarted) return;
     if (!measurement.record("component_use_completed")) return;
 
-    acquisitionStatus.hidden = false;
+    confirmUseButton.disabled = true;
+    confirmUseButton.textContent = "保存したHTMLを開いて確認済み";
+    useConfirmationStatus.hidden = false;
     officialCard.hidden = false;
   });
 
